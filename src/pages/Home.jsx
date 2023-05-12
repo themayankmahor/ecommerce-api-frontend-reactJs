@@ -1,16 +1,21 @@
 import React from "react"
+import Base from "../components/Base";
 
 const Home = () =>
 {
     return(
-        <div className="container">
 
-            <div className="text-center">
-            <h1>This is Home page</h1>
+        <Base>
+
+            <div className="container">
+
+                <div className="text-center">
+                <h1>This is Home page</h1>
+                </div>
+                
             </div>
-            
-            
-        </div>
+
+        </Base>
     )
 }
 

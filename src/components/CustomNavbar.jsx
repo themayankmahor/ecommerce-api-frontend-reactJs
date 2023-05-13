@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { BrowserRouter, NavLink as RouteLink } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react'
+import { NavLink as RouteLink, useNavigate } from 'react-router-dom';
 import { 
 
     Collapse, 
@@ -17,15 +17,24 @@ import {
     
 } from 'reactstrap';
 import AuthModal from './AuthModal';
+import { doLogout, getCurrentUserDetail, isLoggedIn } from '../auth';
+import userContext from '../context/UserContext';
 
 const CustomNavbar = () => {
 
+    ///
+    const userContextData = useContext(userContext);
+
+    ///
+    const navigate = useNavigate();
 
     ///toggle is open or not
     const [isOpen, setIsOpen] = useState(false);
 
     ///check login
     const [login, setLogin] = useState(false);
+
+    const [user, setUser] = useState(undefined);
 
     ///is modal open
     const [modalOpen, setModalOpen] = useState(false);
@@ -35,6 +44,30 @@ const CustomNavbar = () => {
 
     ///toggle navbar
     const toggle = () => setIsOpen(!isOpen);
+
+    ///Logout Button Handler
+    const logout = () =>
+    {
+      doLogout(() => {
+        //logged out
+        setLogin(false);
+
+        //
+        userContextData.setUser({
+          data:null,
+          login:false
+        })
+
+        //
+        navigate('/');
+      })
+    }
+
+    //use Effect
+    useEffect(() => {
+      setLogin(isLoggedIn);
+      setUser(getCurrentUserDetail());
+    }, [])
 
 
   return (
@@ -98,7 +131,7 @@ const CustomNavbar = () => {
                         
                         {/* Logout */}
                         <NavItem>
-                            <NavLink href="/components/">Logout</NavLink>
+                            <NavLink onClick={logout}>Logout</NavLink>
                         </NavItem>
 
                       </>

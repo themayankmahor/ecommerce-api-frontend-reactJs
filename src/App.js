@@ -7,12 +7,17 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import About from './pages/About';
 import Signup from './pages/Signup';
+import 'react-toastify/dist/ReactToastify.css';
+import PrivateRoute from './components/PrivateRoute';
+import UserHome from './pages/user-routes/UserHome';
+import UserProvider from './context/UserProvider';
 
 function App() {
   return (
 
+    <UserProvider>
     <BrowserRouter>
-      <ToastContainer />
+      <ToastContainer position='bottom-center' />
 
         <Routes>
 
@@ -21,10 +26,17 @@ function App() {
           <Route path='/about' element={<About/>}/>
           <Route path='/signup' element={<Signup/>}/>
 
+          <Route path='/user' element={<PrivateRoute/>}>
+
+            {/* User Home */}
+            <Route path='home' element={<UserHome/>} />
+
+          </Route>
+
         </Routes>
 
     </BrowserRouter>
-
+    </UserProvider>
   );
 }
 

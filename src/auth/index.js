@@ -1,5 +1,5 @@
 ///is Logged in
-const isLoggedIn = () =>{
+export const isLoggedIn = () =>{
     let data = localStorage.getItem("data");
 
     //
@@ -15,21 +15,21 @@ const isLoggedIn = () =>{
 }
 
 ///do login => data => save to localstorage
-const doLogin = () =>
+export const doLogin = (data, next) =>
 {
     localStorage.setItem("data", JSON.stringify(data));
     next();
 }
 
 ///do logout => remove from localstorage
-const doLogout = () =>
+export const doLogout = (next) =>
 {
     localStorage.removeItem("data");
     next();
 }
 
 ///get current user
-const getCurrentUserDetail = () =>
+export const getCurrentUserDetail = () =>
 {
     //
     if (isLoggedIn())
@@ -43,7 +43,7 @@ const getCurrentUserDetail = () =>
 }
 
 ///get token
-const getToken = () =>
+export const getToken = () =>
 {
     //
     if (isLoggedIn())

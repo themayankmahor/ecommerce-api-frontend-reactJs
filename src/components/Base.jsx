@@ -1,4 +1,4 @@
-import React from 'react'
+
 import CustomNavbar from './CustomNavbar';
 
 const Base = ({title="Welcome to new webiste", children}) => {

@@ -52,7 +52,7 @@ const ProductByCategory = ({pageSize, sortBy, pageNumber, categoryId, sortDir, s
 
                 <Col key={product.productId}>
                     <Card>
-                        <CardImg src={`${BASE_URL}/products/image/${product.imageName}`} alt=""/>
+                        <CardImg className='text-center' style={{width:'120px', height:'120px', alignSelf:"center"}} src={`${BASE_URL}/products/image/${product.imageName}`} alt=""/>
                         <CardBody className='text-center'>
                             <CardTitle><h5><b>{product.productName}</b></h5></CardTitle>
                             <CardTitle>Rs. {product.price}</CardTitle>

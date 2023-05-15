@@ -21,7 +21,6 @@ const UserHome = () => {
   return (
     
     <Base>
-        <div>UserHome</div>
 
         <ProductByCategory pageSize={5} sortBy={"productId"} pageNumber={0} categoryId={1} sortDir={"asc"}/>
         

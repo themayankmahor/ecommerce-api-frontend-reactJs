@@ -13,7 +13,12 @@ import {
     NavbarText, 
     NavbarToggler, 
     UncontrolledDropdown,
-    Navbar
+    Navbar,
+    PopoverItem,
+    Popover,
+    PopoverHeader,
+    PopoverBody,
+    Button
     
 } from 'reactstrap';
 import AuthModal from './AuthModal';
@@ -38,6 +43,10 @@ const CustomNavbar = () => {
 
     ///is modal open
     const [modalOpen, setModalOpen] = useState(false);
+
+    const [popoverOpen, setPopoverOpen] = useState(false);
+
+    const togglePopover = () => setPopoverOpen(!popoverOpen);
 
     ///open login/signup modal
     const toggleModal = () => setModalOpen(!modalOpen);
@@ -155,12 +164,17 @@ const CustomNavbar = () => {
                             <NavLink tag={RouteLink} to='/profile-info' >Profile Info</NavLink>
                         </NavItem>
 
-                        {/* User name */}
-                        {/* <NavItem>
-                            <NavLink href="https://github.com/reactstrap/reactstrap">
-                            GitHub
-                            </NavLink>
-                        </NavItem> */}
+                        <NavItem>
+                        <NavLink href="#" id="Popover1" onClick={togglePopover}>Cart</NavLink>
+                        <Popover flip
+                          placement="bottom"
+                           isOpen={popoverOpen} 
+                           target="Popover1" 
+                           toggle={togglePopover}>
+                          <PopoverHeader>Your Cart</PopoverHeader>
+                          <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                        </Popover>
+                        </NavItem>
 
                         
                         {/* Logout */}

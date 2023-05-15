@@ -6,7 +6,7 @@ import userContext from '../context/UserContext';
 import { getCurrentUserDetail } from '../auth';
 import { NavLink as RouteLink } from 'react-router-dom';
 
-const ProductByCategory = ({pageSize, sortBy, pageNumber, categoryId, sortDir}) => {
+const ProductByCategory = ({pageSize, sortBy, pageNumber, categoryId, sortDir, sellerId = 0}) => {
 
     //
     const userContextData = useContext(userContext);
@@ -14,19 +14,14 @@ const ProductByCategory = ({pageSize, sortBy, pageNumber, categoryId, sortDir}) 
     const [user, setUser] = useState(null);
 
     //
-    useEffect(() => {
-
-        setUser(getCurrentUserDetail());
-
-    }, [])
-
-    //
     const [products, setProducts] = useState([]);
 
     //use effect
     useEffect(() => {
         
-        getAllProducts(pageSize, sortBy, pageNumber, categoryId, sortDir).then((response) => {
+        setUser(getCurrentUserDetail());
+
+        getAllProducts(pageSize, sortBy, pageNumber, categoryId, sortDir, sellerId).then((response) => {
             console.log(response);
             console.log(response.products);
 
@@ -38,7 +33,7 @@ const ProductByCategory = ({pageSize, sortBy, pageNumber, categoryId, sortDir}) 
   return (
     
     <Card>
-        <CardBody>
+    <CardBody>
     <Row>
         <Col>
             <Card>
@@ -46,8 +41,8 @@ const ProductByCategory = ({pageSize, sortBy, pageNumber, categoryId, sortDir}) 
 
                 <CardBody className='text-center'>
                     <CardTitle>View All</CardTitle>
-
-                    <Button className='btn-primary' tag={RouteLink} to={`/user/all-products`}>View All Products</Button>
+                    
+                    <Button className='btn-primary' tag={RouteLink} to={`/user/all-products/${categoryId}`}>View All Products</Button>
                 </CardBody>
             </Card>
         </Col>
@@ -64,15 +59,24 @@ const ProductByCategory = ({pageSize, sortBy, pageNumber, categoryId, sortDir}) 
                         </CardBody>
 
 
-                        {userContextData.user.login && (user && user.id !== null ? 
+                        {
+                        userContextData.user.login && (
+                            <>
+                                {user.roles[0].name === 'ROLE_NORMAL' &&(
 
-                        <CardFooter className='text-center'>
+                                <CardFooter className='text-center'>
 
-                            <Button className='btn-success'>Add</Button>
+                                    <Button className='btn-success'>Add</Button>
 
-                        </CardFooter>
+                                </CardFooter>
 
-                        : '')}
+                                )}
+                            </>
+                        )
+                        }
+
+
+            
                     </Card>
                 </Col>
 

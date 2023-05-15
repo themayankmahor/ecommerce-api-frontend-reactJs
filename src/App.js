@@ -11,6 +11,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from './components/PrivateRoute';
 import UserHome from './pages/user-routes/UserHome';
 import UserProvider from './context/UserProvider';
+import AllProducts from './pages/user-routes/AllProducts';
+import AllSellerProducts from './pages/seller-routes/AllSellerProducts';
+import AddProducts from './pages/seller-routes/AddProducts';
 
 function App() {
   return (
@@ -25,11 +28,25 @@ function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/about' element={<About/>}/>
           <Route path='/signup' element={<Signup/>}/>
-
+          
+          {/* USER */}
           <Route path='/user' element={<PrivateRoute/>}>
 
             {/* User Home */}
             <Route path='home' element={<UserHome/>} />
+            {/* All Products */}
+            <Route path='all-products/:categoryId' element={<AllProducts/>}/>
+
+          </Route>
+
+          {/* SELLER */}
+          <Route path='/seller' element={<PrivateRoute/>}>
+
+          {/* All Products */}
+          <Route path='all-products' element={<AllSellerProducts/>}/>
+
+          {/* Add Products */}
+          <Route path='add-products' element={<AddProducts/>}/>
 
           </Route>
 

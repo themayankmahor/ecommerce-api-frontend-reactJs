@@ -67,6 +67,7 @@ const CustomNavbar = () => {
     useEffect(() => {
       setLogin(isLoggedIn);
       setUser(getCurrentUserDetail());
+      
     }, [])
 
 
@@ -74,6 +75,7 @@ const CustomNavbar = () => {
     
     //Navbar
     <div>
+      {/* {console.log(user.roles[0].name)} */}
     <Navbar
         color="dark"
         dark
@@ -90,8 +92,40 @@ const CustomNavbar = () => {
 
             {/* Home */}
             <NavItem>
-                <NavLink tag={RouteLink} to='/'>Home</NavLink>
+            {!login && <NavLink tag={RouteLink} to={'/'}>Home</NavLink>}
+              {login && (
+                <>
+                  {user.roles[0].name === 'ROLE_NORMAL' && (
+                    <NavLink tag={RouteLink} to={'/user/home'}>
+                      Home
+                    </NavLink>
+                  )}
+                  {/* {user.roles[0].name === 'ROLE_SELLER' && (
+                    <NavLink tag={RouteLink} to={'/seller/home'}>
+                      Home
+                    </NavLink>
+                  )} */}
+                </>
+              )}
+                
             </NavItem>
+
+            {
+              login && (
+                <>
+                    {user.roles[0].name === 'ROLE_SELLER' && (
+                      <>
+                    <NavLink tag={RouteLink} to={'/seller/all-products'}>
+                      All Products
+                    </NavLink>
+                    <NavLink tag={RouteLink} to={'/seller/add-products'}>
+                      Add Products
+                    </NavLink>
+                    </>
+                  )}
+                </>
+              )
+            }
 
 
           <UncontrolledDropdown nav inNavbar>

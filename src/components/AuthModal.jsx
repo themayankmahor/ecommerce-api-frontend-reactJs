@@ -12,6 +12,9 @@ const AuthModal = ({ isOpen, toggle }) => {
   const userContextData = useContext(userContext);
 
   //
+  const [user, setUser] = useState(undefined);
+
+  //
   const navigate = useNavigate();
 
   const [showSignUp, setShowSignUp] = useState(false);
@@ -114,7 +117,7 @@ const AuthModal = ({ isOpen, toggle }) => {
         //submit the data to server to generate JWT (token)
         loginUser(loginDetail).then((data) => {
           console.log(data);
-
+          
           //save the data to localStorage
           doLogin(data, () => {
             console.log("Login detail is saved to localStorage");
@@ -124,8 +127,17 @@ const AuthModal = ({ isOpen, toggle }) => {
               data:data.user,
               login:true
             });
+            
+            //user.roles[0].name === 'ROLE_NORMAL'
+            if (data.user.roles[0].name === 'ROLE_NORMAL')
+            {
+              navigate('/user/home');
+            }
 
-            navigate('/user/home');
+            if (data.user.roles[0].name === 'ROLE_SELLER')
+            {
+              navigate('/seller/all-products');
+            }
             
           })
 

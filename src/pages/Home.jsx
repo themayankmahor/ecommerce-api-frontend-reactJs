@@ -11,10 +11,6 @@ const Home = () =>
         <Base>
 
             <div className="container">
-
-                <div className="text-center">
-                <h1>This is Home page</h1>
-                </div>
                 
             </div>
 

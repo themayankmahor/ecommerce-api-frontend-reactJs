@@ -24,6 +24,8 @@ import {
 import AuthModal from './AuthModal';
 import { doLogout, getCurrentUserDetail, isLoggedIn } from '../auth';
 import userContext from '../context/UserContext';
+import CartPopover from './CartPopover';
+import Cart from './Cart';
 
 const CustomNavbar = () => {
 
@@ -164,7 +166,9 @@ const CustomNavbar = () => {
                             <NavLink tag={RouteLink} to='/profile-info' >Profile Info</NavLink>
                         </NavItem>
 
-                        <NavItem>
+                        <CartPopover />
+
+                        {/* <NavItem>
                         <NavLink href="#" id="Popover1" onClick={togglePopover}>Cart</NavLink>
                         <Popover flip
                           placement="bottom"
@@ -174,7 +178,7 @@ const CustomNavbar = () => {
                           <PopoverHeader>Your Cart</PopoverHeader>
                           <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
                         </Popover>
-                        </NavItem>
+                        </NavItem> */}
 
                         
                         {/* Logout */}

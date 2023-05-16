@@ -5,6 +5,8 @@ import { BASE_URL } from '../services/Helper';
 import userContext from '../context/UserContext';
 import { getCurrentUserDetail } from '../auth';
 import { NavLink as RouteLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import CartContext from '../context/CartContext';
 
 const ProductByCategory = ({pageSize, sortBy, pageNumber, categoryId, sortDir, sellerId = 0}) => {
 
@@ -13,8 +15,21 @@ const ProductByCategory = ({pageSize, sortBy, pageNumber, categoryId, sortDir, s
 
     const [user, setUser] = useState(null);
 
+    const { dispatch } = useContext(CartContext);
+
     //
     const [products, setProducts] = useState([]);
+
+    //login first
+    const loginFirst = () => {
+        toast.error("Login First !!");
+    }
+
+    //
+    const handleAddToCart = (product) => {
+        // Dispatch an action to add the product to the cart
+        dispatch({ type: 'ADD_ITEM', payload: product });
+      };
 
     //use effect
     useEffect(() => {
@@ -32,7 +47,7 @@ const ProductByCategory = ({pageSize, sortBy, pageNumber, categoryId, sortDir, s
 
   return (
     
-    <Card>
+    <Card className='mt-4'>
     <CardBody>
     <Row>
         <Col>
@@ -42,7 +57,7 @@ const ProductByCategory = ({pageSize, sortBy, pageNumber, categoryId, sortDir, s
                 <CardBody className='text-center'>
                     <CardTitle>View All</CardTitle>
                     
-                    <Button className='btn-primary' tag={RouteLink} to={`/user/all-products/${categoryId}`}>View All Products</Button>
+                    {userContextData.user.login ? (<Button className='btn-primary' tag={RouteLink} to={`/user/all-products/${categoryId}`}>View All Products</Button>) : (<Button className='btn-primary' onClick={loginFirst}>View All Products</Button>)}
                 </CardBody>
             </Card>
         </Col>
@@ -66,7 +81,7 @@ const ProductByCategory = ({pageSize, sortBy, pageNumber, categoryId, sortDir, s
 
                                 <CardFooter className='text-center'>
 
-                                    <Button className='btn-success'>Add</Button>
+                                    <Button className='btn-success' onClick={() => handleAddToCart(product)}>Add</Button>
 
                                 </CardFooter>
 

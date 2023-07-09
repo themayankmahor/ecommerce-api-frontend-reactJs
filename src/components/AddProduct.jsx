@@ -68,7 +68,7 @@ const AddProduct = () => {
         {
         
         <div className='text-center'>
-        <Label for="category"><h3>Product Category</h3></Label>
+        <Label for="category"><h3>Select Product Category</h3></Label>
         <Input type="select" id="category" placeholder="Content" name="categoryId"
         onChange={handleCategoryChange}
         defaultValue={0}

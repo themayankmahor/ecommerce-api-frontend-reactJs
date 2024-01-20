@@ -14,12 +14,10 @@ import UserProvider from './context/UserProvider';
 import AllProducts from './pages/user-routes/AllProducts';
 import AllSellerProducts from './pages/seller-routes/AllSellerProducts';
 import AddProducts from './pages/seller-routes/AddProducts';
-import { CartProvider } from './context/CartContext';
 
 function App() {
   return (
 
-    <CartProvider>
     <UserProvider>
     <BrowserRouter>
       <ToastContainer position='bottom-center' />
@@ -56,7 +54,6 @@ function App() {
 
     </BrowserRouter>
     </UserProvider>
-    </CartProvider>
   );
 }
 

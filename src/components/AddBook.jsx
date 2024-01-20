@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import { Button, Card, CardBody, Container, Form, Input, Label } from 'reactstrap'
 import { doCreateBook, getProductByName, uploadProductImage } from '../services/product-services';
-import userContext from '../context/UserContext';
 import { getCurrentUserDetail } from '../auth';
 
 const AddBook = () => {

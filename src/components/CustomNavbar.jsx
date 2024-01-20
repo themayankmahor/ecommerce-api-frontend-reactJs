@@ -10,22 +10,15 @@ import {
     NavItem, 
     NavLink, 
     NavbarBrand, 
-    NavbarText, 
     NavbarToggler, 
     UncontrolledDropdown,
     Navbar,
-    PopoverItem,
-    Popover,
-    PopoverHeader,
-    PopoverBody,
-    Button
+
     
 } from 'reactstrap';
 import AuthModal from './AuthModal';
 import { doLogout, getCurrentUserDetail, isLoggedIn } from '../auth';
 import userContext from '../context/UserContext';
-import CartPopover from './CartPopover';
-import Cart from './Cart';
 
 const CustomNavbar = () => {
 
@@ -45,10 +38,6 @@ const CustomNavbar = () => {
 
     ///is modal open
     const [modalOpen, setModalOpen] = useState(false);
-
-    const [popoverOpen, setPopoverOpen] = useState(false);
-
-    const togglePopover = () => setPopoverOpen(!popoverOpen);
 
     ///open login/signup modal
     const toggleModal = () => setModalOpen(!modalOpen);
@@ -166,7 +155,7 @@ const CustomNavbar = () => {
                             <NavLink tag={RouteLink} to='/profile-info' >Profile Info</NavLink>
                         </NavItem>
 
-                        <CartPopover />
+                      
 
                         {/* <NavItem>
                         <NavLink href="#" id="Popover1" onClick={togglePopover}>Cart</NavLink>

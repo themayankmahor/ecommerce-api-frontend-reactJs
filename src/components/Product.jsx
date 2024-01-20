@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import userContext from '../context/UserContext';
 import { getCurrentUserDetail } from '../auth';
 import { Button, Card, CardBody, CardImg, Col, Row } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import { BASE_URL } from '../services/Helper';
 
 const Product = ({ product = { productId: -1, productName: "This is default name", price: "Pricee" } }) => {

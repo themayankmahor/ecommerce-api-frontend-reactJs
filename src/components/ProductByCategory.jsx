@@ -6,7 +6,6 @@ import userContext from '../context/UserContext';
 import { getCurrentUserDetail } from '../auth';
 import { NavLink as RouteLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import CartContext from '../context/CartContext';
 
 const ProductByCategory = ({pageSize, sortBy, pageNumber, categoryId, sortDir, sellerId = 0}) => {
 
@@ -26,10 +25,6 @@ const ProductByCategory = ({pageSize, sortBy, pageNumber, categoryId, sortDir, s
     }
 
     //
-    const handleAddToCart = (product) => {
-        // Dispatch an action to add the product to the cart
-        dispatch({ type: 'ADD_ITEM', payload: product });
-      };
 
     //use effect
     useEffect(() => {
@@ -81,7 +76,7 @@ const ProductByCategory = ({pageSize, sortBy, pageNumber, categoryId, sortDir, s
 
                                 <CardFooter className='text-center'>
 
-                                    <Button className='btn-success' onClick={() => handleAddToCart(product)}>Add</Button>
+                                    
 
                                 </CardFooter>
 
